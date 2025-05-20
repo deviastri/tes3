@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 from io import BytesIO
 
 st.set_page_config(page_title="🚗 Tes3 - Selisih Golongan", layout="wide")
@@ -74,15 +73,6 @@ if uploaded_invoice and uploaded_tiket:
         file_name="rekap_selisih_golongan.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
-
-    st.subheader("📈 Grafik Selisih per Pelabuhan")
-    fig, ax = plt.subplots()
-    bar_data = rekap[rekap['nilai'] != 0]
-    ax.bar(bar_data['pelabuhan'], bar_data['nilai'])
-    ax.axhline(0, color='gray', linestyle='--')
-    ax.set_ylabel("Selisih (Rp)")
-    ax.set_title("Naik/Turun Golongan per Pelabuhan")
-    st.pyplot(fig)
 
 else:
     st.info("Silakan unggah file Invoice dan Ticket Summary untuk mulai.")
